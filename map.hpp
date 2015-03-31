@@ -1,19 +1,24 @@
 #ifndef MAP_HPP_INCLUDED
 #define MAP_HPP_INCLUDED
-
-#include <SFML/Graphics.hpp>
 #include <string>
+#include "cacheimgfiles.hpp"
+#include "gate.hpp"
 
 using namespace sf;
 
 class Map
 {
-private :
-    RenderWindow*window;
-    bool matrix[24][16]; /// true : on peut marcher ; false : bloc
-    std::string filename; /// on charge un fichier contenant les infos de mapping
+private:
+    RenderWindow* window;
+    std::string map_filename;
 public:
-    Map(std::string,RenderWindow*); /// décla du constructeur
+    Gate map_gate;
+    int collision_matrix[24][16];
+    char tile_set_matrix[24][16];
+    CacheImgFiles images_storage;
+    Map(std::string,RenderWindow*);
+    void setMapFilename(std::string);
+    void getMap();
     void drawMap();
 };
 
